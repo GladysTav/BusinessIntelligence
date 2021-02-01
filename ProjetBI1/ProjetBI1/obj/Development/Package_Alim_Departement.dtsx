@@ -1,0 +1,622 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/18/2021 11:40:08 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ANUBIS"
+  DTS:CreatorName="ANUBIS\Anubis"
+  DTS:DTSID="{939BDFE1-04D3-471A-886E-F491201EFBBE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.68"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package_Alim_Departement"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{07D15898-DA16-4A62-993E-CDD6ACFB32F6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\RemplirDepartement"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{1AB56CE6-C1B4-4BE8-B61B-CE96F7DABED7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="RemplirDepartement"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\RemplirDepartement\Concessionaire_Departement"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Concessionaire_Departement"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Dim_departement]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\RemplirDepartement\Concessionaire_Departement.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB].Columns[Copie de code_departement]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copie de code_departement"
+                      externalMetadataColumnId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_departement]"
+                      lineageId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de code_departement]" />
+                    <inputColumn
+                      refId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB].Columns[Copie de name_departement]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copie de name_departement"
+                      externalMetadataColumnId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB].ExternalColumns[Nom_departement]"
+                      lineageId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de name_departement]" />
+                    <inputColumn
+                      refId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB].Columns[Copie de region_code]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copie de region_code"
+                      externalMetadataColumnId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_region]"
+                      lineageId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de region_code]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_departement]"
+                      dataType="wstr"
+                      length="3"
+                      name="Code_departement" />
+                    <externalMetadataColumn
+                      refId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB].ExternalColumns[Nom_departement]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nom_departement" />
+                    <externalMetadataColumn
+                      refId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_region]"
+                      dataType="wstr"
+                      length="3"
+                      name="Code_region" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\RemplirDepartement\Concessionaire_Departement.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Concessionaire_Departement.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\RemplirDepartement\Concessionaire_Departement.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Concessionaire_Departement.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\RemplirDepartement\Concessionaire_Departement.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\RemplirDepartement\Conversion de données"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\RemplirDepartement\Conversion de données.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\RemplirDepartement\Conversion de données.Inputs[Entrée de conversion de données].Columns[region_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="region_code"
+                      lineageId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[region_code]" />
+                    <inputColumn
+                      refId="Package\RemplirDepartement\Conversion de données.Inputs[Entrée de conversion de données].Columns[code_departement]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="code_departement"
+                      lineageId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[code_departement]" />
+                    <inputColumn
+                      refId="Package\RemplirDepartement\Conversion de données.Inputs[Entrée de conversion de données].Columns[name_departement]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name_departement"
+                      lineageId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[name_departement]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\RemplirDepartement\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de region_code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de region_code]"
+                      name="Copie de region_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[region_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de code_departement]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de code_departement]"
+                      name="Copie de code_departement"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[code_departement]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de name_departement]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de name_departement]"
+                      name="Copie de name_departement"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[name_departement]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\RemplirDepartement\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\RemplirDepartement\Fichier_Departement"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Source du fichier plat;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Source du fichier plat"
+              localeId="1036"
+              name="Fichier_Departement"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Spécifie si les colonnes dont la longueur est zéro sont traitées comme des valeurs NULL."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom d'une colonne de sortie contenant le nom du fichier. Si aucun nom n'est spécifié, aucune colonne de sortie contenant le nom du fichier ne sera générée."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\RemplirDepartement\Fichier_Departement.Connections[FlatFileConnection]"
+                  connectionManagerID="{966CBF4A-F2E3-4B0F-B0F8-5A035878D5DE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CoDepartement]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat]"
+                  name="Sortie de source de fichier plat">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[region_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].ExternalColumns[region_code]"
+                      length="50"
+                      lineageId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[region_code]"
+                      name="region_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[code_departement]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].ExternalColumns[code_departement]"
+                      length="50"
+                      lineageId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[code_departement]"
+                      name="code_departement"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[name_departement]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].ExternalColumns[name_departement]"
+                      length="50"
+                      lineageId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].Columns[name_departement]"
+                      name="name_departement"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les données sont au format binaire."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].ExternalColumns[region_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="region_code" />
+                    <externalMetadataColumn
+                      refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].ExternalColumns[code_departement]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="code_departement" />
+                    <externalMetadataColumn
+                      refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat].ExternalColumns[name_departement]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="name_departement" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie d'erreur de source de fichier plat]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source de fichier plat">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Colonne de sortie d'erreur de source de fichier plat"
+                      lineageId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                      name="Colonne de sortie d'erreur de source de fichier plat" />
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\RemplirDepartement.Paths[Sortie de conversion de données]"
+              endId="Package\RemplirDepartement\Concessionaire_Departement.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de conversion de données"
+              startId="Package\RemplirDepartement\Conversion de données.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\RemplirDepartement.Paths[Sortie de source de fichier plat]"
+              endId="Package\RemplirDepartement\Conversion de données.Inputs[Entrée de conversion de données]"
+              name="Sortie de source de fichier plat"
+              startId="Package\RemplirDepartement\Fichier_Departement.Outputs[Sortie de source de fichier plat]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ViderDepartement"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{5CF87DBB-0E1B-44D4-9D70-0F6A297FD4BC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ViderDepartement"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{924EE108-1E91-41ED-8902-0463BE2E9508}"
+          SQLTask:SqlStatementSource="Delete from [dbo].[Dim_departement]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{9824AF10-511A-4373-8266-D6676E85DD0B}"
+      DTS:From="Package\ViderDepartement"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\RemplirDepartement" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\RemplirDepartement"
+          TopLeft="178.857145903062,186.588237910947" />
+        <NodeLayout
+          Size="164,41.6"
+          Id="Package\ViderDepartement"
+          TopLeft="177.142860159582,84.4235305957728" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="263.000003031322,126.023530595773">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.5647073151742"
+              Start="0,0"
+              End="0,53.0647073151742">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.0647073151742" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\RemplirDepartement">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176.8,41.6"
+          Id="Package\RemplirDepartement\Fichier_Departement"
+          TopLeft="178.857145903062,52.0000007292804" />
+        <NodeLayout
+          Size="215.2,41.6"
+          Id="Package\RemplirDepartement\Concessionaire_Departement"
+          TopLeft="162.857145630583,209.223532346046" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\RemplirDepartement\Conversion de données"
+          TopLeft="174.285717253782,137.647060753977" />
+        <EdgeLayout
+          Id="Package\RemplirDepartement.Paths[Sortie de source de fichier plat]"
+          TopLeft="267.771431578422,93.6000007292804">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.047060024697"
+              Start="0,0"
+              End="0,36.547060024697">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.547060024697" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\RemplirDepartement.Paths[Sortie de conversion de données]"
+          TopLeft="269.371431442183,179.247060753977">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.9764715920683"
+              Start="0,0"
+              End="0,22.4764715920683">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.4764715920683" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\RemplirDepartement\Concessionaire_Departement">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

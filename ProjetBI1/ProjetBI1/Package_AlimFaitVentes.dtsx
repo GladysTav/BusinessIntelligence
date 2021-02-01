@@ -1,0 +1,530 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/18/2021 4:55:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ANUBIS"
+  DTS:CreatorName="ANUBIS\Anubis"
+  DTS:DTSID="{6D4BB158-F311-4D12-9461-F7D107783BD7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.68"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package_AlimFaitVentes"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{0DF481F0-6C8C-4B93-A666-03A77DD98740}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Alim_FaitVentes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{8764FB1A-1589-4715-AE5C-A537D3E92DDF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Alim_FaitVentes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Alim_FaitVentes\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Fait_vente]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_FaitVentes\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Code_client]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Code_client"
+                      externalMetadataColumnId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_client]"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Code_client]" />
+                    <inputColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Code_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="Code_produit"
+                      externalMetadataColumnId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_produit]"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Code_produit]" />
+                    <inputColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[jour]"
+                      cachedDataType="dbDate"
+                      cachedName="jour"
+                      externalMetadataColumnId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[jour]"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[jour]" />
+                    <inputColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[code_ville]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="code_ville"
+                      externalMetadataColumnId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_ville]"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_ville]" />
+                    <inputColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[nombre_vente]"
+                      cachedDataType="i4"
+                      cachedName="nombre_vente"
+                      externalMetadataColumnId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Nombre_vente]"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nombre_vente]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_client]"
+                      dataType="wstr"
+                      length="10"
+                      name="Code_client" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_produit]"
+                      dataType="wstr"
+                      length="8"
+                      name="Code_produit" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[jour]"
+                      dataType="dbDate"
+                      name="jour" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_ville]"
+                      dataType="wstr"
+                      length="5"
+                      name="Code_ville" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Nombre_vente]"
+                      dataType="r8"
+                      name="Nombre_vente" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Alim_FaitVentes\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_FaitVentes\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_FaitVentes\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Alim_FaitVentes\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Fait_vente]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select top (1000000)*
+from v_liste_vente
+where nombre_vente != 0</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Alim_FaitVentes\Source OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Code_client]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_client]"
+                      length="10"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Code_client]"
+                      name="Code_client"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Code_produit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_produit]"
+                      length="8"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Code_produit]"
+                      name="Code_produit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[jour]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[jour]"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[jour]"
+                      name="jour"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_ville]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[code_ville]"
+                      length="5"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_ville]"
+                      name="code_ville"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nombre_vente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[nombre_vente]"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nombre_vente]"
+                      name="nombre_vente"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_client]"
+                      dataType="wstr"
+                      length="10"
+                      name="Code_client" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_produit]"
+                      dataType="wstr"
+                      length="8"
+                      name="Code_produit" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[jour]"
+                      dataType="dbDate"
+                      name="jour" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[code_ville]"
+                      dataType="wstr"
+                      length="5"
+                      name="code_ville" />
+                    <externalMetadataColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[nombre_vente]"
+                      dataType="i4"
+                      name="nombre_vente" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_client]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_client]"
+                      name="Code_client" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_produit]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_produit]"
+                      name="Code_produit" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[code_ville]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[code_ville]"
+                      name="code_ville" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[jour]"
+                      dataType="dbDate"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[jour]"
+                      name="jour" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[nombre_vente]"
+                      dataType="i4"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[nombre_vente]"
+                      name="nombre_vente" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Alim_FaitVentes.Paths[Sortie de source OLE DB]"
+              endId="Package\Alim_FaitVentes\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\Alim_FaitVentes\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Vider_FaitVentes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{87FC3A0D-C872-4633-8EBE-269CC95D3F9D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Vider_FaitVentes"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{924EE108-1E91-41ED-8902-0463BE2E9508}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[Fait_vente]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{451ED8E6-368E-48E1-B642-02A44AC57B48}"
+      DTS:From="Package\Vider_FaitVentes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\Alim_FaitVentes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Alim_FaitVentes"
+          TopLeft="191.428574688581,116.235295747803" />
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\Vider_FaitVentes"
+          TopLeft="186.285717458141,34.2588240098788" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="266.657146073361,75.8588240098788">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.3764717379243"
+              Start="0,0"
+              End="0,32.8764717379243">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.8764717379243" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Alim_FaitVentes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Alim_FaitVentes\Source OLE DB"
+          TopLeft="224.000003814697,73.4117657354546" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Alim_FaitVentes\Destination OLE DB"
+          TopLeft="210.071432055259,155.994119757682" />
+        <EdgeLayout
+          Id="Package\Alim_FaitVentes.Paths[Sortie de source OLE DB]"
+          TopLeft="297.035717934978,115.011765735455">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.9823540222274"
+              Start="0,0"
+              End="0,33.4823540222274">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.4823540222274" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_FaitVentes\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Alim_FaitVentes\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

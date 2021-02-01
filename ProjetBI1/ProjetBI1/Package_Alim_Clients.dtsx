@@ -1,0 +1,743 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/18/2021 2:05:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ANUBIS"
+  DTS:CreatorName="ANUBIS\Anubis"
+  DTS:DTSID="{BFE1934C-A33D-484D-AA86-0A63554499B1}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.68"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package_Alim_Clients"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{E43C6D5F-85D3-41B2-91DB-4C3FFF8D63B8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CoClient1]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{55C1E6F7-854B-4AA0-AD52-0FBADF76542F}"
+      DTS:ObjectName="CoClient1">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::Repertoire] + "\\"  + @[User::FichierClient]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1036"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\Bureau\Cours\M1\Business intelligence\Ateliers\Sources\Liste_Clients_Particulier.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID_client"
+              DTS:DTSID="{9929AFFD-2EB1-41EE-82AA-1D93DAC136D2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="age"
+              DTS:DTSID="{F1AFDA1C-F0D5-43DF-AEDE-C57D629674F1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Code_ville"
+              DTS:DTSID="{0E93A0DB-FE60-4104-8A11-7AEC8CF8CF69}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1501DB75-A2D4-4920-9AA9-24F19403FD61}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FichierClient">
+      <DTS:VariableValue
+        DTS:DataType="8">Liste_Clients_Particulier.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4C03048A-C539-4F39-BA94-E3B93FCED688}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Repertoire">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\Bureau\Cours\M1\Business intelligence\Ateliers\Sources</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Conteneur de boucles Foreach"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Conteneur de boucles Foreach"
+      DTS:DTSID="{0ADE3535-8A47-4DBB-B788-76B4200FAB32}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Conteneur de boucles Foreach">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{FF912FE3-1B20-4F19-80EB-8F21F7276EFB}"
+        DTS:ObjectName="{FF912FE3-1B20-4F19-80EB-8F21F7276EFB}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::Repertoire]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="D:\Bureau\Cours\M1\Business intelligence\Ateliers\Sources" />
+            <FEFEProperty
+              FileSpec="Liste_Clients_Particulier*.csv" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Conteneur de boucles Foreach\Remplir_Clients"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tâche de flux de données"
+          DTS:DTSID="{DEBE0D6A-CC01-420C-A5D4-84B24DCE3D9E}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Remplir_Clients"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                  description="Conversion de données"
+                  name="Conversion de données"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Inputs[Entrée de conversion de données]"
+                      name="Entrée de conversion de données">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Inputs[Entrée de conversion de données].Columns[ID_client]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ID_client"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[ID_client]" />
+                        <inputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Inputs[Entrée de conversion de données].Columns[age]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="age"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[age]" />
+                        <inputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Inputs[Entrée de conversion de données].Columns[Code_ville]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Code_ville"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[Code_ville]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données]"
+                      exclusionGroup="1"
+                      name="Sortie de conversion de données"
+                      synchronousInputId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Inputs[Entrée de conversion de données]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de ID_client]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de ID_client]"
+                          name="Copie de ID_client"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                              name="SourceInputColumnLineageID">#{Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[ID_client]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de age]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de age]"
+                          name="Copie de age"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                              name="SourceInputColumnLineageID">#{Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[age]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de Code_ville]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de Code_ville]"
+                          name="Copie de Code_ville"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                              name="SourceInputColumnLineageID">#{Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[Code_ville]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie d'erreur de conversion de données]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de conversion de données"
+                      synchronousInputId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Inputs[Entrée de conversion de données]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+                  description="Destination OLE DB"
+                  name="Destination OLE DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                      name="OpenRowset">[dbo].[Dim_client]</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Commande SQL à exécuter."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie le mode utilisé pour accéder à la base de données."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                      description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                      errorOrTruncationOperation="Insérer"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrée de destination OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copie de ID_client]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Copie de ID_client"
+                          externalMetadataColumnId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_client]"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de ID_client]" />
+                        <inputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copie de age]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Copie de age"
+                          externalMetadataColumnId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Age_client]"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de age]" />
+                        <inputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Copie de Code_ville]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Copie de Code_ville"
+                          externalMetadataColumnId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_ville]"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copie de Code_ville]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_client]"
+                          dataType="wstr"
+                          length="10"
+                          name="Code_client" />
+                        <externalMetadataColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Age_client]"
+                          dataType="wstr"
+                          length="2"
+                          name="Age_client" />
+                        <externalMetadataColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Type_client]"
+                          dataType="wstr"
+                          length="10"
+                          name="Type_client" />
+                        <externalMetadataColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_ville]"
+                          dataType="wstr"
+                          length="5"
+                          name="Code_ville" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de destination OLE DB"
+                      synchronousInputId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Source du fichier plat;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+                  description="Source du fichier plat"
+                  localeId="1036"
+                  name="Fichier_Client1"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Spécifie si les colonnes dont la longueur est zéro sont traitées comme des valeurs NULL."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie le nom d'une colonne de sortie contenant le nom du fichier. Si aucun nom n'est spécifié, aucune colonne de sortie contenant le nom du fichier ne sera générée."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CoClient1]"
+                      connectionManagerRefId="Package.ConnectionManagers[CoClient1]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat]"
+                      name="Sortie de source de fichier plat">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[ID_client]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].ExternalColumns[ID_client]"
+                          length="50"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[ID_client]"
+                          name="ID_client"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[age]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].ExternalColumns[age]"
+                          length="50"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[age]"
+                          name="age"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[Code_ville]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_ville]"
+                          length="50"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].Columns[Code_ville]"
+                          name="Code_ville"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].ExternalColumns[ID_client]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ID_client" />
+                        <externalMetadataColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].ExternalColumns[age]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="age" />
+                        <externalMetadataColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_ville]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Code_ville" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie d'erreur de source de fichier plat]"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de source de fichier plat">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Colonne de sortie d'erreur de source de fichier plat"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                          name="Colonne de sortie d'erreur de source de fichier plat" />
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Conteneur de boucles Foreach\Remplir_Clients.Paths[Sortie de conversion de données]"
+                  endId="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  name="Sortie de conversion de données"
+                  startId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Outputs[Sortie de conversion de données]" />
+                <path
+                  refId="Package\Conteneur de boucles Foreach\Remplir_Clients.Paths[Sortie de source de fichier plat]"
+                  endId="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données.Inputs[Entrée de conversion de données]"
+                  name="Sortie de source de fichier plat"
+                  startId="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1.Outputs[Sortie de source de fichier plat]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{2D342980-96E3-41D2-9DAF-6598512B5462}"
+          DTS:ObjectName="{2D342980-96E3-41D2-9DAF-6598512B5462}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FichierClient" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Vider_Clients"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{6DD62F5B-7A51-47BB-AC5D-64C465294D65}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Vider_Clients"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{924EE108-1E91-41ED-8902-0463BE2E9508}"
+          SQLTask:SqlStatementSource="Delete from [dbo].[Dim_client]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{B01E1C4F-BD60-4710-A24A-FF47E997061A}"
+      DTS:From="Package\Vider_Clients"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\Conteneur de boucles Foreach" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\Vider_Clients"
+          TopLeft="177.714288740742,7.34117657354556" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Conteneur de boucles Foreach\Remplir_Clients"
+          TopLeft="21.7142886726224,5.97647246720447" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="204.8,102.4"
+          Size="204.8,145.6"
+          Id="Package\Conteneur de boucles Foreach"
+          TopLeft="151.785716776945,85.0294128800759" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="250.750002758844,48.9411765735456">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.0882363065303"
+              Start="0,0"
+              End="0,28.5882363065303">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5882363065303" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Conteneur de boucles Foreach\Remplir_Clients">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\Conteneur de boucles Foreach\Remplir_Clients\Fichier_Client1"
+          TopLeft="100.00000170299,33.0352945809546" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Conteneur de boucles Foreach\Remplir_Clients\Conversion de données"
+          TopLeft="79.4285727812319,104.000001458561" />
+        <EdgeLayout
+          Id="Package\Conteneur de boucles Foreach\Remplir_Clients.Paths[Sortie de source de fichier plat]"
+          TopLeft="173.514287242111,74.6352945809546">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.3647068776062"
+              Start="0,0"
+              End="0,21.8647068776062">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.8647068776062" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB"
+          TopLeft="87.4285729174711,182.917649624174" />
+        <EdgeLayout
+          Id="Package\Conteneur de boucles Foreach\Remplir_Clients.Paths[Sortie de conversion de données]"
+          TopLeft="173.028572849352,145.600001458561">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.3176481656137"
+              Start="0,0"
+              End="0,29.8176481656137">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.8176481656137" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Conteneur de boucles Foreach\Remplir_Clients\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

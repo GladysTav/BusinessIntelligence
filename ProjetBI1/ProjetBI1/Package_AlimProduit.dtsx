@@ -1,0 +1,2554 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/18/2021 3:52:36 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ANUBIS"
+  DTS:CreatorName="ANUBIS\Anubis"
+  DTS:DTSID="{E20AE5BB-98CD-419A-8E99-5467C8FCF6F9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.68"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package_AlimProduit"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{0929C527-10ED-4218-B2BE-AAFA0707EEFB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DimMarque"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{50717A2F-E2A7-43CD-B092-5728D2EEECF8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimMarque"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DimMarque\DimProduitMarque_InsertData"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="DimProduitMarque_InsertData"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Dim_produit_marque]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimMarque\DimProduitMarque_InsertData.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimMarque\DimProduitMarque_InsertData.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimMarque\DimProduitMarque_InsertData.Inputs[Entrée de destination OLE DB].Columns[Code_marque]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Code_marque"
+                      externalMetadataColumnId="Package\DimMarque\DimProduitMarque_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_marque]"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]" />
+                    <inputColumn
+                      refId="Package\DimMarque\DimProduitMarque_InsertData.Inputs[Entrée de destination OLE DB].Columns[Nom_marque]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Nom_marque"
+                      externalMetadataColumnId="Package\DimMarque\DimProduitMarque_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Nom_marque]"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_marque]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimMarque\DimProduitMarque_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_marque]"
+                      dataType="wstr"
+                      length="4"
+                      name="Code_marque" />
+                    <externalMetadataColumn
+                      refId="Package\DimMarque\DimProduitMarque_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Nom_marque]"
+                      dataType="wstr"
+                      length="20"
+                      name="Nom_marque" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimMarque\DimProduitMarque_InsertData.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DimMarque\DimProduitMarque_InsertData.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimMarque\DimProduitMarque_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimMarque\DimProduitMarque_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimMarque\DimProduitMarque_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimMarque\DimProduitMarque_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimMarque\DimProduitMarque_UpdateData"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="Commande OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Exécute une instruction SQL pour chaque ligne d'un flux de données. Par exemple, appelez une procédure stockée 'nouvelle configuration d'employé' pour chaque ligne de la table 'nouveaux employés'. Remarque : l'exécution d'une instruction SQL pour chaque ligne d'un flux de données volumineux peut prendre beaucoup de temps."
+              name="DimProduitMarque_UpdateData"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">update Dim_produit_marque
+set Nom_marque = ?
+where Code_marque =?
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimMarque\DimProduitMarque_UpdateData.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimMarque\DimProduitMarque_UpdateData.Inputs[Entrée de commande OLE DB]"
+                  errorOrTruncationOperation="Exécution de commande"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de commande OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimMarque\DimProduitMarque_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Code_marque]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Code_marque"
+                      externalMetadataColumnId="Package\DimMarque\DimProduitMarque_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]" />
+                    <inputColumn
+                      refId="Package\DimMarque\DimProduitMarque_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Nom_marque]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Nom_marque"
+                      externalMetadataColumnId="Package\DimMarque\DimProduitMarque_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_marque]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimMarque\DimProduitMarque_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="20"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimMarque\DimProduitMarque_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimMarque\DimProduitMarque_UpdateData.Outputs[Sortie de commande OLE DB]"
+                  exclusionGroup="1"
+                  name="Sortie de commande OLE DB"
+                  synchronousInputId="Package\DimMarque\DimProduitMarque_UpdateData.Inputs[Entrée de commande OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimMarque\DimProduitMarque_UpdateData.Outputs[Sortie d'erreur de commande OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de commande OLE DB"
+                  synchronousInputId="Package\DimMarque\DimProduitMarque_UpdateData.Inputs[Entrée de commande OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimMarque\DimProduitMarque_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimMarque\DimProduitMarque_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimMarque\DimProduitMarque_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimMarque\DimProduitMarque_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimMarque\MarqueProduit_SourceDB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="MarqueProduit_SourceDB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select Code_marque, Nom_marque from Produit_marque</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimMarque\MarqueProduit_SourceDB.Connections[OleDbConnection]"
+                  connectionManagerID="{53D7D208-E9E4-44E4-BB54-69EB954E228E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Produits_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_marque]"
+                      length="4"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]"
+                      name="Code_marque"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_marque]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Nom_marque]"
+                      length="20"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_marque]"
+                      name="Nom_marque"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_marque]"
+                      dataType="wstr"
+                      length="4"
+                      name="Code_marque" />
+                    <externalMetadataColumn
+                      refId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Nom_marque]"
+                      dataType="wstr"
+                      length="20"
+                      name="Nom_marque" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_marque]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_marque]"
+                      name="Code_marque" />
+                    <outputColumn
+                      refId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom_marque]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom_marque]"
+                      name="Nom_marque" />
+                    <outputColumn
+                      refId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimMarque\Recherche"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="Recherche"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Dim_produit_marque]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Dim_produit_marque]) [refTable]
+where [refTable].[Code_marque] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Code_marque" dataType="DT_WSTR" length="4" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nom_marque" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de lignage se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimMarque\Recherche.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimMarque\Recherche.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimMarque\Recherche.Inputs[Entrée de recherche].Columns[Code_marque]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Code_marque"
+                      lineageId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">Code_marque</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimMarque\Recherche.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\DimMarque\Recherche.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimMarque\Recherche.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\DimMarque\Recherche.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimMarque\Recherche.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\DimMarque\Recherche.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimMarque\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimMarque\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimMarque\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimMarque\Recherche.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DimMarque.Paths[Sortie de recherche avec correspondance]"
+              endId="Package\DimMarque\DimProduitMarque_UpdateData.Inputs[Entrée de commande OLE DB]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\DimMarque\Recherche.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\DimMarque.Paths[Sortie de recherche sans correspondance]"
+              endId="Package\DimMarque\DimProduitMarque_InsertData.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\DimMarque\Recherche.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\DimMarque.Paths[Sortie de source OLE DB]"
+              endId="Package\DimMarque\Recherche.Inputs[Entrée de recherche]"
+              name="Sortie de source OLE DB"
+              startId="Package\DimMarque\MarqueProduit_SourceDB.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DimModele"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{f5eeb873-79c2-4ffc-be1e-cc580d9938e4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimModele"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DimModele\DimProduitModele_InsertData"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="DimProduitModele_InsertData"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Dim_produit_modele]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimModele\DimProduitModele_InsertData.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB].Columns[Code_modele]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Code_modele"
+                      externalMetadataColumnId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_modele]"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_modele]" />
+                    <inputColumn
+                      refId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB].Columns[Code_marque]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Code_marque"
+                      externalMetadataColumnId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_marque]"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]" />
+                    <inputColumn
+                      refId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB].Columns[Nom_modele]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Nom_modele"
+                      externalMetadataColumnId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Nom_modele]"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_modele]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_marque]"
+                      dataType="wstr"
+                      length="4"
+                      name="Code_marque" />
+                    <externalMetadataColumn
+                      refId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_modele]"
+                      dataType="wstr"
+                      length="6"
+                      name="Code_modele" />
+                    <externalMetadataColumn
+                      refId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Nom_modele]"
+                      dataType="wstr"
+                      length="20"
+                      name="Nom_modele" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimModele\DimProduitModele_InsertData.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimModele\DimProduitModele_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimModele\DimProduitModele_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimModele\DimProduitModele_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimModele\DimProduitModele_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimModele\DimProduitModele_UpdateData"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="Commande OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Exécute une instruction SQL pour chaque ligne d'un flux de données. Par exemple, appelez une procédure stockée 'nouvelle configuration d'employé' pour chaque ligne de la table 'nouveaux employés'. Remarque : l'exécution d'une instruction SQL pour chaque ligne d'un flux de données volumineux peut prendre beaucoup de temps."
+              name="DimProduitModele_UpdateData"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">update Dim_produit_modele set Nom_modele = ? , Code_marque = ? where Code_modele= ?
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimModele\DimProduitModele_UpdateData.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB]"
+                  errorOrTruncationOperation="Exécution de commande"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de commande OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Nom_modele]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Nom_modele"
+                      externalMetadataColumnId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_modele]" />
+                    <inputColumn
+                      refId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Code_modele]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Code_modele"
+                      externalMetadataColumnId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_modele]" />
+                    <inputColumn
+                      refId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Code_marque]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Code_marque"
+                      externalMetadataColumnId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="20"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="6"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimModele\DimProduitModele_UpdateData.Outputs[Sortie de commande OLE DB]"
+                  exclusionGroup="1"
+                  name="Sortie de commande OLE DB"
+                  synchronousInputId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimModele\DimProduitModele_UpdateData.Outputs[Sortie d'erreur de commande OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de commande OLE DB"
+                  synchronousInputId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimModele\DimProduitModele_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimModele\DimProduitModele_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimModele\DimProduitModele_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimModele\DimProduitModele_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimModele\ModeleProduit_SourceDB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="ModeleProduit_SourceDB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select Code_modele, Nom_modele, Code_marque from Produit_modeles</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimModele\ModeleProduit_SourceDB.Connections[OleDbConnection]"
+                  connectionManagerID="{53D7D208-E9E4-44E4-BB54-69EB954E228E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Produits_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_marque]"
+                      length="4"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]"
+                      name="Code_marque"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_modele]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_modele]"
+                      length="6"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_modele]"
+                      name="Code_modele"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_modele]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Nom_modele]"
+                      length="20"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_modele]"
+                      name="Nom_modele"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_marque]"
+                      dataType="wstr"
+                      length="4"
+                      name="Code_marque" />
+                    <externalMetadataColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_modele]"
+                      dataType="wstr"
+                      length="6"
+                      name="Code_modele" />
+                    <externalMetadataColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Nom_modele]"
+                      dataType="wstr"
+                      length="20"
+                      name="Nom_modele" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_modele]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_modele]"
+                      name="Code_modele" />
+                    <outputColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom_modele]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom_modele]"
+                      name="Nom_modele" />
+                    <outputColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_marque]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_marque]"
+                      name="Code_marque" />
+                    <outputColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimModele\Recherche2"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="Recherche2"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Dim_produit_modele]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Dim_produit_modele]) [refTable]
+where [refTable].[Code_modele] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Code_modele" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nom_modele" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Code_marque" dataType="DT_WSTR" length="4" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de lignage se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_modele]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimModele\Recherche2.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimModele\Recherche2.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimModele\Recherche2.Inputs[Entrée de recherche].Columns[Code_modele]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Code_modele"
+                      lineageId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_modele]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">Code_modele</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimModele\Recherche2.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\DimModele\Recherche2.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimModele\Recherche2.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\DimModele\Recherche2.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimModele\Recherche2.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\DimModele\Recherche2.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimModele\Recherche2.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimModele\Recherche2.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimModele\Recherche2.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimModele\Recherche2.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DimModele.Paths[Sortie de recherche avec correspondance]"
+              endId="Package\DimModele\DimProduitModele_UpdateData.Inputs[Entrée de commande OLE DB]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\DimModele\Recherche2.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\DimModele.Paths[Sortie de recherche sans correspondance]"
+              endId="Package\DimModele\DimProduitModele_InsertData.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\DimModele\Recherche2.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\DimModele.Paths[Sortie de source OLE DB]"
+              endId="Package\DimModele\Recherche2.Inputs[Entrée de recherche]"
+              name="Sortie de source OLE DB"
+              startId="Package\DimModele\ModeleProduit_SourceDB.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DimProduit"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{7420d274-d37f-4ef6-b53b-1620467643e3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimProduit"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DimProduit\DimProduits_InsertData"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="DimProduits_InsertData"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Dim_produit]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimProduit\DimProduits_InsertData.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].Columns[Code_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="Code_produit"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_produit]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_produit]" />
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].Columns[Code_modele]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Code_modele"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_modele]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_modele]" />
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].Columns[Nom_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nom_produit"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Nom_produit]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_produit]" />
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].Columns[Type_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Type_produit"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Type_produit]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Type_produit]" />
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].Columns[Couleur_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Couleur_produit"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Couleur_produit]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Couleur_produit]" />
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].Columns[Finition_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Finition_produit"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Finition_produit]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Finition_produit]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_modele]"
+                      dataType="wstr"
+                      length="6"
+                      name="Code_modele" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_produit]"
+                      dataType="wstr"
+                      length="8"
+                      name="Code_produit" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Nom_produit]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nom_produit" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Type_produit]"
+                      dataType="wstr"
+                      length="20"
+                      name="Type_produit" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Couleur_produit]"
+                      dataType="wstr"
+                      length="20"
+                      name="Couleur_produit" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB].ExternalColumns[Finition_produit]"
+                      dataType="wstr"
+                      length="20"
+                      name="Finition_produit" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimProduit\DimProduits_InsertData.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimProduit\DimProduits_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimProduit\DimProduits_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimProduit\DimProduits_InsertData.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimProduit\DimProduits_UpdateData"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="Commande OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Exécute une instruction SQL pour chaque ligne d'un flux de données. Par exemple, appelez une procédure stockée 'nouvelle configuration d'employé' pour chaque ligne de la table 'nouveaux employés'. Remarque : l'exécution d'une instruction SQL pour chaque ligne d'un flux de données volumineux peut prendre beaucoup de temps."
+              name="DimProduits_UpdateData"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">update Dim_produit
+set Nom_produit = ?
+, Type_produit = ?
+, Couleur_produit =?
+, Finition_produit = ?
+, Code_modele = ?
+where Code_produit =?
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimProduit\DimProduits_UpdateData.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB]"
+                  errorOrTruncationOperation="Exécution de commande"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de commande OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Type_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Type_produit"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Type_produit]" />
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Couleur_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Couleur_produit"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Couleur_produit]" />
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Finition_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Finition_produit"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_3]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Finition_produit]" />
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Nom_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nom_produit"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_produit]" />
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Code_modele]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Code_modele"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_4]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_modele]" />
+                    <inputColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].Columns[Code_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="Code_produit"
+                      externalMetadataColumnId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_5]"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_produit]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="20"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="20"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_3]"
+                      dataType="wstr"
+                      length="20"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_4]"
+                      dataType="wstr"
+                      length="6"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB].ExternalColumns[Param_5]"
+                      dataType="wstr"
+                      length="8"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Informations de paramètre.  Correspond aux valeurs DBPARAMFLAGSENUM OLE DB."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimProduit\DimProduits_UpdateData.Outputs[Sortie de commande OLE DB]"
+                  exclusionGroup="1"
+                  name="Sortie de commande OLE DB"
+                  synchronousInputId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimProduit\DimProduits_UpdateData.Outputs[Sortie d'erreur de commande OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de commande OLE DB"
+                  synchronousInputId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimProduit\DimProduits_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimProduit\DimProduits_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimProduit\DimProduits_UpdateData.Outputs[Sortie d'erreur de commande OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimProduit\Produits_SourceDB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Produits_SourceDB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT p.*, m.Nom_modele, ma.Code_marque,ma.Nom_marque
+FROM [Produit] p left join Produit_modeles m on p.[Code_modele] = m.Code_modele
+left join Produit_marque ma on m.Code_marque = ma.Code_marque</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimProduit\Produits_SourceDB.Connections[OleDbConnection]"
+                  connectionManagerID="{53D7D208-E9E4-44E4-BB54-69EB954E228E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Produits_DB]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_marque]"
+                      length="4"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_marque]"
+                      name="Code_marque"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_modele]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_modele]"
+                      length="6"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_modele]"
+                      name="Code_modele"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_modele]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Nom_modele]"
+                      length="20"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_modele]"
+                      name="Nom_modele"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_produit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_produit]"
+                      length="8"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_produit]"
+                      name="Code_produit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_produit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Nom_produit]"
+                      length="50"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_produit]"
+                      name="Nom_produit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Type_produit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Type_produit]"
+                      length="20"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Type_produit]"
+                      name="Type_produit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Couleur_produit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Couleur_produit]"
+                      length="20"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Couleur_produit]"
+                      name="Couleur_produit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Finition_produit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Finition_produit]"
+                      length="20"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Finition_produit]"
+                      name="Finition_produit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_marque]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Nom_marque]"
+                      length="20"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Nom_marque]"
+                      name="Nom_marque"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_marque]"
+                      dataType="wstr"
+                      length="4"
+                      name="Code_marque" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_modele]"
+                      dataType="wstr"
+                      length="6"
+                      name="Code_modele" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Nom_modele]"
+                      dataType="wstr"
+                      length="20"
+                      name="Nom_modele" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Code_produit]"
+                      dataType="wstr"
+                      length="8"
+                      name="Code_produit" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Nom_produit]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nom_produit" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Type_produit]"
+                      dataType="wstr"
+                      length="20"
+                      name="Type_produit" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Couleur_produit]"
+                      dataType="wstr"
+                      length="20"
+                      name="Couleur_produit" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Finition_produit]"
+                      dataType="wstr"
+                      length="20"
+                      name="Finition_produit" />
+                    <externalMetadataColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].ExternalColumns[Nom_marque]"
+                      dataType="wstr"
+                      length="20"
+                      name="Nom_marque" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_produit]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_produit]"
+                      name="Code_produit" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom_produit]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom_produit]"
+                      name="Nom_produit" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Type_produit]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Type_produit]"
+                      name="Type_produit" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Couleur_produit]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Couleur_produit]"
+                      name="Couleur_produit" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Finition_produit]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Finition_produit]"
+                      name="Finition_produit" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_modele]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_modele]"
+                      name="Code_modele" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom_modele]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom_modele]"
+                      name="Nom_modele" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_marque]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_marque]"
+                      name="Code_marque" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom_marque]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom_marque]"
+                      name="Nom_marque" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimProduit\Recherche3"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="Recherche3"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Dim_produit]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Dim_produit]) [refTable]
+where [refTable].[Code_produit] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Code_produit" dataType="DT_WSTR" length="8" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nom_produit" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Type_produit" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Couleur_produit" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Finition_produit" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Code_modele" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de lignage se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_produit]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimProduit\Recherche3.Connections[OleDbConnection]"
+                  connectionManagerID="{924EE108-1E91-41ED-8902-0463BE2E9508}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ANUBIS_SQLSERVER_2017.Concessionnaire_DB]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimProduit\Recherche3.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimProduit\Recherche3.Inputs[Entrée de recherche].Columns[Code_produit]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="Code_produit"
+                      lineageId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB].Columns[Code_produit]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">Code_produit</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimProduit\Recherche3.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\DimProduit\Recherche3.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimProduit\Recherche3.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\DimProduit\Recherche3.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimProduit\Recherche3.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\DimProduit\Recherche3.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimProduit\Recherche3.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimProduit\Recherche3.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimProduit\Recherche3.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimProduit\Recherche3.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DimProduit.Paths[Sortie de recherche avec correspondance]"
+              endId="Package\DimProduit\DimProduits_UpdateData.Inputs[Entrée de commande OLE DB]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\DimProduit\Recherche3.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\DimProduit.Paths[Sortie de recherche sans correspondance]"
+              endId="Package\DimProduit\DimProduits_InsertData.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\DimProduit\Recherche3.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\DimProduit.Paths[Sortie de source OLE DB]"
+              endId="Package\DimProduit\Recherche3.Inputs[Entrée de recherche]"
+              name="Sortie de source OLE DB"
+              startId="Package\DimProduit\Produits_SourceDB.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{BDFFC522-D8F8-4339-9B0B-FD40CA7CF750}"
+      DTS:From="Package\DimMarque"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\DimModele" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{239437BC-4152-4BEA-98C3-CA5F0FD062FD}"
+      DTS:From="Package\DimModele"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 1"
+      DTS:To="Package\DimProduit" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="132,41.6"
+          Id="Package\DimMarque"
+          TopLeft="28.0000004768372,104.611766173023" />
+        <NodeLayout
+          Size="130.4,41.6"
+          Id="Package\DimModele"
+          TopLeft="200.57143198714,105.223530887485" />
+        <NodeLayout
+          Size="130.4,41.6"
+          Id="Package\DimProduit"
+          TopLeft="357.714291806124,105.270588286773" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="160.000000476837,125.717648530254">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.5714315103024,0"
+              Start="0,0"
+              End="33.0714315103024,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="33.0714315103024,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 1]"
+          TopLeft="330.97143198714,126.047059587129">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.7428598189843,0"
+              Start="0,0"
+              End="19.2428598189843,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="19.2428598189843,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DimMarque">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="127.2,41.6"
+          Id="Package\DimMarque\Recherche"
+          TopLeft="38.857143518876,129.963026600007" />
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\DimMarque\MarqueProduit_SourceDB"
+          TopLeft="5.49999999999999,55.9336137199308" />
+        <NodeLayout
+          Size="227.2,41.6"
+          Id="Package\DimMarque\DimProduitMarque_UpdateData"
+          TopLeft="319.428576868407,206.85714519084" />
+        <NodeLayout
+          Size="220.8,41.6"
+          Id="Package\DimMarque\DimProduitMarque_InsertData"
+          TopLeft="18.2857145971182,216.833616053628" />
+        <EdgeLayout
+          Id="Package\DimMarque.Paths[Sortie de recherche avec correspondance]"
+          TopLeft="122.323810185543,171.563026600007">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="310.704766682865,35.2941185908335"
+              Start="0,0"
+              End="310.704766682865,27.7941185908335">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,5.48659147410848" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,5.48659147410848"
+                    Point2="0,9.48659147410848"
+                    Point3="4,9.48659147410848" />
+                  <mssgle:LineSegment
+                    End="306.704766682865,9.48659147410848" />
+                  <mssgle:CubicBezierSegment
+                    Point1="306.704766682865,9.48659147410848"
+                    Point2="310.704766682865,9.48659147410848"
+                    Point3="310.704766682865,13.4865914741085" />
+                  <mssgle:LineSegment
+                    End="310.704766682865,27.7941185908335" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="63.6753716226823,14.4865914741085,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimMarque.Paths[Sortie de source OLE DB]"
+          TopLeft="103.578571759438,97.5336137199308">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.4294128800759"
+              Start="0,0"
+              End="0,24.9294128800759">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.9294128800759" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimMarque.Paths[Sortie de recherche sans correspondance]"
+          TopLeft="102.457143518876,171.563026600007">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.2285710782422,45.2705894536214"
+              Start="0,0"
+              End="26.2285710782422,37.7705894536214">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.6352947268107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.6352947268107"
+                    Point2="0,22.6352947268107"
+                    Point3="4,22.6352947268107" />
+                  <mssgle:LineSegment
+                    End="22.2285710782422,22.6352947268107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.2285710782422,22.6352947268107"
+                    Point2="26.2285710782422,22.6352947268107"
+                    Point3="26.2285710782422,26.6352947268107" />
+                  <mssgle:LineSegment
+                    End="26.2285710782422,37.7705894536214" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-78.3877261796289,27.6352947268107,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimMarque\Recherche">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Dim_produit_marque]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimMarque\MarqueProduit_SourceDB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimMarque\DimProduitMarque_InsertData">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DimModele">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="133.6,41.6"
+          Id="Package\DimModele\Recherche2"
+          TopLeft="129.177560851873,109.726893442996" />
+        <NodeLayout
+          Size="225.6,41.6"
+          Id="Package\DimModele\DimProduitModele_UpdateData"
+          TopLeft="409.748994201404,186.621012033829" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\DimModele\ModeleProduit_SourceDB"
+          TopLeft="95.8204173329969,35.6974805629201" />
+        <NodeLayout
+          Size="219.2,41.6"
+          Id="Package\DimModele\DimProduitModele_InsertData"
+          TopLeft="108.606131930115,196.597482896617" />
+        <EdgeLayout
+          Id="Package\DimModele.Paths[Sortie de recherche sans correspondance]"
+          TopLeft="175.044227518539,151.326893442996">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43.1619044115756,45.2705894536212"
+              Start="0,0"
+              End="43.1619044115756,37.7705894536212">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4296837539002" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.4296837539002"
+                    Point2="0,18.4296837539002"
+                    Point3="4,18.4296837539002" />
+                  <mssgle:LineSegment
+                    End="39.1619044115756,18.4296837539002" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.1619044115756,18.4296837539002"
+                    Point2="43.1619044115756,18.4296837539002"
+                    Point3="43.1619044115756,22.4296837539002" />
+                  <mssgle:LineSegment
+                    End="43.1619044115756,37.7705894536212" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-69.9210595129622,23.4296837539002,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimModele.Paths[Sortie de recherche avec correspondance]"
+          TopLeft="216.910894185206,151.326893442996">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="305.638100016198,35.2941185908332"
+              Start="0,0"
+              End="305.638100016198,27.7941185908332">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,2.50271023362333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,2.50271023362333"
+                    Point2="0,6.50271023362333"
+                    Point3="4,6.50271023362333" />
+                  <mssgle:LineSegment
+                    End="301.638100016198,6.50271023362333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="301.638100016198,6.50271023362333"
+                    Point2="305.638100016198,6.50271023362333"
+                    Point3="305.638100016198,10.5027102336233" />
+                  <mssgle:LineSegment
+                    End="305.638100016198,27.7941185908332" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="61.142038289349,11.5027102336233,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimModele.Paths[Sortie de source OLE DB]"
+          TopLeft="195.098989092435,77.2974805629201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.4294128800759"
+              Start="0,0"
+              End="0,24.9294128800759">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.9294128800759" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimModele\Recherche2">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Dim_produit_modele]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimModele\ModeleProduit_SourceDB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimModele\DimProduitModele_InsertData">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DimProduit">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\DimProduit\Produits_SourceDB"
+          TopLeft="49.6897944134805,19.52269376999" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\DimProduit\DimProduits_UpdateData"
+          TopLeft="353.006126203202,170.446225240899" />
+        <NodeLayout
+          Size="133.6,41.6"
+          Id="Package\DimProduit\Recherche3"
+          TopLeft="72.4346928536719,93.5521066500651" />
+        <NodeLayout
+          Size="190.4,41.6"
+          Id="Package\DimProduit\DimProduits_InsertData"
+          TopLeft="51.8632639319139,180.422696103687" />
+        <EdgeLayout
+          Id="Package\DimProduit.Paths[Sortie de source OLE DB]"
+          TopLeft="136.462243633576,61.12269376999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.4294128800758"
+              Start="0,0"
+              End="0,24.9294128800758">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.9294128800758" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimProduit.Paths[Sortie de recherche sans correspondance]"
+          TopLeft="118.301359520339,135.152106650065">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28.7619044115754,45.2705894536211"
+              Start="0,0"
+              End="28.7619044115754,37.7705894536211">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4296837539002" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.4296837539002"
+                    Point2="0,18.4296837539002"
+                    Point3="4,18.4296837539002" />
+                  <mssgle:LineSegment
+                    End="24.7619044115754,18.4296837539002" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.7619044115754,18.4296837539002"
+                    Point2="28.7619044115754,18.4296837539002"
+                    Point3="28.7619044115754,22.4296837539002" />
+                  <mssgle:LineSegment
+                    End="28.7619044115754,37.7705894536211" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-77.1210595129623,23.4296837539002,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimProduit.Paths[Sortie de recherche avec correspondance]"
+          TopLeft="160.168026187005,135.152106650065">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="291.238100016197,35.2941185908331"
+              Start="0,0"
+              End="291.238100016197,27.7941185908331">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,2.50271023362325" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,2.50271023362325"
+                    Point2="0,6.50271023362325"
+                    Point3="4,6.50271023362325" />
+                  <mssgle:LineSegment
+                    End="287.238100016197,6.50271023362325" />
+                  <mssgle:CubicBezierSegment
+                    Point1="287.238100016197,6.50271023362325"
+                    Point2="291.238100016197,6.50271023362325"
+                    Point3="291.238100016197,10.5027102336232" />
+                  <mssgle:LineSegment
+                    End="291.238100016197,27.7941185908331" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="53.9420382893485,11.5027102336233,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimProduit\DimProduits_InsertData">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
